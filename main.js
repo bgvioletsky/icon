@@ -117,6 +117,8 @@ function F() {
                     
                     d=d.concat(require("hiker://files/bgHouse/icon/json/"+list[eval(getMyVar("mainindex","0"))].dirpath+".json"))
                    
+                }else{
+                    d=d.concat(x)
                 }
                 break;
             case "1":
@@ -198,6 +200,8 @@ function F() {
                           }
                         },list),
                       })
+                }else{
+                    d=d.concat(x)
                 }
                 break;
         }
