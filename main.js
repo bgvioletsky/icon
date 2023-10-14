@@ -15,7 +15,7 @@ function F() {
         col_type: "scroll_button",
     });
     if (MY_PAGE == 1) {
-        switch (getItem("warehouse")) {
+        switch (getItem("warehouse","0")) {
             case "0":
                 if (fileExist("hiker://files/bgHouse/icon/json/localStorage.json")) {
                    list = require("hiker://files/bgHouse/icon/json/localStorage.json");
