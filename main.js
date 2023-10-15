@@ -1,4 +1,4 @@
-const method = $.require("https://cdn.jsdelivr.net/gh/bgvioletsky/icon@0.0.3/method.js");
+const method = $.require("https://cdn.jsdelivr.net/gh/bgvioletsky/icon/method.js");
 // const method = require("http://192.168.31.134:8081/method.js");
 
 
@@ -224,7 +224,7 @@ function setting() {
         title: "api设置",
         url: $("hiker://empty#noRecordHistory##noHistory#").rule(() => {
             require(config.依赖);
-            api();
+            githubapi();
         }),
         col_type: "icon_small_4",
     },{
@@ -257,7 +257,7 @@ function setting() {
     setResult(d);
 }
 //用于设置GitHubapi
-function api() {
+function githubapi() {
     var d = [];
     let api;
     if(fileExist('hiker://files/bgHouse/icon/json/api.json')){

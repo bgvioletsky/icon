@@ -475,7 +475,7 @@
     writeFile("hiker://files/bgHouse/icon/src/" + dirpath + "/test.js");
     deleteFile("hiker://files/bgHouse/icon/src/" + dirpath + "/test.js");
   }
-  function delete_file(accessToken, url, sha) {
+  function delete_file(accessToken, repoOwner,repoName,path, sha) {
     const requestOptions = {
       method: "DELETE",
       headers: {
@@ -484,6 +484,7 @@
       },
       body: JSON.stringify({ message: "delete", sha: sha }),
     };
+    let url="https://api.github.com/repos/"+repoOwner+"/"+repoName+"/contents/"+path
     return fetch(url, requestOptions);
   }
   function test_repeat(data, dirpath) {
