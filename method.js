@@ -465,8 +465,9 @@
   function getImg(f_name) {
     var folder = getFolder(f_name);
     var list = [];
+    let dir = f_name.split("/").at(-1)
     for (var i in folder) {
-      var path = folder[i].name;
+      var path = dir+"/"+folder[i].name;
       list.push(path);
     }
     return list;
@@ -495,6 +496,19 @@
     }
     return false;
   }
+
+  function test_item(){
+      let a=false;
+      for(i = 0; i < arguments.length; i++) {
+        if(arguments[i]=="") a=true;
+    }
+      return a;
+  }
+  function updateall(path){
+    let dir=path.split("/").at(-2);
+    let f_name=path.split("/").at(-1);
+   return upload(getItem("token"),getItem("repoOwner"),getItem("repoName"),dir,f_name,path);
+  }
   let bgcode = {
     getFileTime: (path) => getFileTime(path),
     getFilePath: (path, type, expand) => getFilePath(path, type, expand),
@@ -520,6 +534,8 @@
     delete_file: delete_file,
     test_repeat: test_repeat,
     createDir: createDir,
+    test_item:test_item,
+    updateall:updateall,
   };
   if (typeof module !== "undefined") {
     $.exports = bgcode;
