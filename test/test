@@ -1,0 +1,67 @@
+# #!/bin/bash
+
+# # 指定待重命名图片所在目录
+# image_dir="/Users/bgcode/Pictures/背景"
+
+# cd "$image_dir" || exit 1
+
+# # 遍历目录中的所有图片文件
+# for image_file in *.jpg *.jpeg *.png *.gif; do
+
+#   # 生成随机字符串（12位）
+#   random_string=$(openssl rand -base64 9)
+
+#   # 构建新的文件名
+#   new_filename="${random_string}.${image_file##*.}"
+
+#   # 判断是否存在同名文件，如果存在则向前推迟一秒，并重复检查直到找到唯一的文件名
+#   while [[ -e "$new_filename" ]]; do
+#     sleep 1
+#     random_string=$(openssl rand -base64 9)
+#     new_filename="${random_string}.${image_file##*.}"
+#   done
+
+#   # 执行重命名操作
+#   mv "$image_file" "$new_filename"
+
+# done
+
+# echo "图片重命名完成！"
+#!/bin/bash
+
+# 询问用户输入待重命名图片所在目录的路径
+read -p "请输入待重命名图片所在目录的路径：" image_dir
+
+cd "$image_dir" || exit 1
+
+# 计数器
+counter=1
+
+# 遍历目录中的所有文件
+for image_file in *; do
+
+  # 判断文件是否是图片格式
+  if [[ "$image_file" =~ \.(jpg|jpeg|png)$ ]]; then
+
+    # 获取文件扩展名
+    extension="${image_file##*.}"
+
+    # 构建新的文件名
+    new_filename="${counter}.${extension}"
+
+    # 执行重命名操作
+    mv "$image_file" "$new_filename"
+
+    # 计数器加一
+    counter=$((counter + 1))
+
+  else
+
+    # 如果不是图片格式，则跳过该文件
+    continue
+
+  fi
+
+done
+
+echo "图片重命名完成！"
