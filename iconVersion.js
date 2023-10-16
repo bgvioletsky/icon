@@ -1,4 +1,5 @@
 var newVersion = {
+    "url":"https://cdn.jsdelivr.net/gh/bgvioletsky/icon@/main.js",
     "icon":"0.0.5",
     "icondesc":{
         "0.0.1":"10月14日初次创建完成一点功能",
