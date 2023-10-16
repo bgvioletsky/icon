@@ -1,5 +1,5 @@
 // bgcode
-const method = require((config.依赖).split(/\/main/)[0]+'/main/method.js');
+const method = require((config.依赖).replace("main.js",'method.js'));
 
 function F() {
   Version();
