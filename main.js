@@ -1,7 +1,8 @@
 // bgcode
-const method = require(config.方法);
+const method = require((config.依赖).match(/^(https?:\/\/[^\/]+)/)[1]+'method.js');
 
 function F() {
+  Version()
   var d = [];
   let list = [];
   let x = [];
@@ -39,9 +40,9 @@ function F() {
         col_type: "icon_2",
         title: "上传本地图片",
         pic_url: "hiker://files/bgHouse/src/system/19.svg",
-        url:  $("","文件名").input((list)=>{
-          return "fileSelect://" + $.toString((list,name) => {
-            const method = $.require(config.方法);
+        url:  $("","文件名").input((list,da)=>{
+          return "fileSelect://" + $.toString((list,name,method) => {
+            
             let dir =
               "hiker://files/bgHouse/icon/src/" +
               list[eval(getMyVar("mainindex", "0"))].dirpath +
@@ -67,16 +68,16 @@ function F() {
               refreshPage(true);
               return "toast://仓库添加成功";
             }
-          }, list,input)
-        },list)
+          }, list,input,da)
+        },list,method)
       },
       {
         col_type: "icon_2",
         title: "上传链接图片",
         pic_url: "hiker://files/bgHouse/src/system/19.svg",
         url: $("","文件名").input((list)=>{
-          return("", "https|hiker|绝对地址").input((list,name) => {
-          const file = $.require(config.方法);
+          return $("", "https|hiker|绝对地址").input((list,name) => {
+          let method= require(config.方法);
           let dir =
             "hiker://files/bgHouse/icon/src/" +
             list[eval(getMyVar("mainindex", "0"))].dirpath +
@@ -89,9 +90,9 @@ function F() {
               "hiker://files/",
               "/storage/emulated/0/Android/data/com.example.hikerview/files/Documents/"
             );
-            file.copyFile(input, getPath(dir).slice(7), true);
+            method.copyFile(input, getPath(dir).slice(7), true);
           } else if (input.match(/\/storage/g)) {
-            file.copyFile(input, getPath(dir).slice(7), true);
+            method.copyFile(input, getPath(dir).slice(7), true);
           } else {
             ("toast://请输入正确地址");
           }
@@ -103,7 +104,7 @@ function F() {
               getItem("repoName"),
               list[eval(getMyVar("mainindex", "0"))].dirpath,
               name,
-              path
+              dir
             );
           }
           if (message) {
@@ -117,10 +118,11 @@ function F() {
       }
     );
     for (let i in imgpath) {
-      let pic_url;
+      let pic_url= "hiker://files/bgHouse/icon/src/" + imgpath[i];
+      let pic_url1;
       getItem("warehouse", "0") == "0"
-        ? (pic_url = "hiker://files/bgHouse/icon/src/" + imgpath[i])
-        : (pic_url =
+        ? (pic_url1 = "hiker://files/bgHouse/icon/src/" + imgpath[i])
+        : (pic_url1 =
             "https://cdn.jsdelivr.net/gh/" +
             getItem("repoOwner") +
             "/" +
@@ -132,16 +134,20 @@ function F() {
         url: $("#noLoading#").lazyRule((pic) => {
           copy(pic);
           return "hiker://empyt";
-        }, pic_url),
+        }, pic_url1),
         extra: {
           longClick: [
             {
               title: " 删除 ",
-              js: $.toString((pic) => {
+              js: $.toString((aa,pic,a,b,c,d) => {
                 deleteFile(pic);
+                if(getItem("warehouse")=="1"){
+                  let sha=aa.query(b,c,d).sha;
+                  aa.delete_file(a,b,c,d,sha)
+                }
                 refreshPage(false);
                 toast("图片已删除");
-              }, pic_url),
+              }, method,pic_url,getItem("token"),getItem("repoOwner"),getItem("repoName"),imgpath[i]),
             },
           ],
         },
@@ -383,34 +389,34 @@ function whfiles() {
   var d = [];
   d.push(
     {
-      title: "dirname",
-      col_type: "input",
+      title: getMyVar("dirname", "")==""? "文件夹名":getMyVar("dirname"),
+      col_type: "icon_1_search",
       desc: "文件夹名",
-      extra: {
-        titleVisible: false,
-        onChange: 'putMyVar("dirname",input)',
-        defaultValue: getMyVar("dirname", ""),
-      },
+      url:$("","文件夹名称可随意填写").input(()=>{
+        putMyVar("dirname",input);
+        refreshPage(true);
+        return "toast://你的路径是"+input; //在func函数中input表示选择的选项内容
+      }),
     },
     {
-      title: "dirpath",
-      col_type: "input",
+      title: getMyVar("dirpath", "")==""? "文件夹路径":getMyVar("dirpath"),
+      col_type: "icon_1_search",
       desc: "文件夹路径",
-      extra: {
-        titleVisible: false,
-        onChange: 'putMyVar("dirpath",input)',
-        defaultValue: getMyVar("dirpath", ""),
-      },
+      url:$("","文件夹路径可随意填写").input(()=>{
+        putMyVar("dirpath",input);
+        refreshPage(true);
+        return "toast://你的路径是"+input; //在func函数中input表示选择的选项内容
+      }),
     },
     {
-      title: "dirtype",
-      col_type: "input",
+      title:getMyVar("dirtype", "")==""? "文件显示类型":getMyVar("dirtype"),
+      col_type: "icon_1_search",
+      url:$(["icon_4","icon_small_4","movie_2"],3,"请选择").select(()=>{
+        putMyVar("dirtype",input)
+        refreshPage(true);
+        return "toast://你选择的是"+input; //在func函数中input表示选择的选项内容
+      }),
       desc: "文件显示类型",
-      extra: {
-        titleVisible: false,
-        onChange: 'putMyVar("dirtype",input)',
-        defaultValue: getMyVar("dirtype", ""),
-      },
     },
     {
       title: "保存",
@@ -561,4 +567,35 @@ function updatefile() {
       log(error);
     }
   }
+}
+
+//更新
+function Version(){
+  var nowVersion = getItem('Version', "0.0.1");//现在版本 
+  var nowtime = Date.now();
+  var oldtime = parseInt(getItem('VersionChecktime','0').replace('bgvioletsky',''));
+  if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime+12*60*60*1000)) {
+    try {
+        require((config.依赖).match(/^(https?:\/\/[^\/]+)/)[1]+'/iconVersion.js')
+        if (parseFloat((newVersion.icon).replace(/(\.\d+)\./, '$1')) > parseFloat((nowVersion).replace(/(\.\d+)\./, '$1'))) {
+            confirm({
+                title:'发现新版本，是否更新？', 
+                content:nowVersion+'=>'+newVersion.icon+'\n'+newVersion.icondesc[newVersion.icon], 
+                confirm: $.toString((nowtime,newVersion) => {
+                    setItem('Version', newVersion);
+                    setItem('VersionChecktime', 'bgvioletsky'+nowtime);
+                    deleteCache();
+                    delete config.依赖;
+                    refreshPage();
+                },nowtime, newVersion.icon),
+                cancel:''
+            })
+            log('检测到新版本！\n   《V'+newVersion.icon+'版本》'+newVersion.icondesc[newVersion.icon]);
+        }
+        putMyVar('icon-Version', '-V'+newVersion.icon);
+    } catch (e) { }
+    putMyVar('bgvioletsky-VersionCheck', '1');
+}else{
+    putMyVar('icon-Version', '-V'+nowVersion);
+}
 }
