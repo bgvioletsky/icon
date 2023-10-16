@@ -2,7 +2,7 @@
 const method = require((config.依赖).split(/\/main/)[0]+'/main/method.js');
 
 function F() {
-  Version()
+  Version();
   var d = [];
   let list = [];
   let x = [];
@@ -200,6 +200,14 @@ function setting() {
         return "toast://上传完成";
       }),
       col_type: "icon_small_4",
+      pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
+    },
+    {
+      title: "版本号为: V"+getItem('Version'),
+      url: $().lazyRule(() => {
+        return "toast://未做完";
+      }),
+      col_type: "text_icon",
       pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
     }
   );
