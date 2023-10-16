@@ -583,6 +583,7 @@ function Version(){
   var nowtime = Date.now();
   var oldtime = parseInt(getItem('VersionChecktime','bgvioletsky0').replace('bgvioletsky',''));
   if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime+12*60*60*1000)) {
+    log("sa")
     try {
         require((config.依赖).match(/^(https?:\/\/[^\/]+)/)[1]+'/iconVersion.js')
         if (parseFloat((newVersion.icon).replace(/(\.\d+)\./, '$1')) > parseFloat((nowVersion).replace(/(\.\d+)\./, '$1'))) {
