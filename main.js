@@ -1,5 +1,5 @@
 // bgcode
-const method = require((config.依赖).match(/^(https?:\/\/[^\/]+)/)[1]+'method.js');
+const method = require((config.依赖).match(/^(https?:\/\/[^\/]+)/)[1]+'/method.js');
 
 function F() {
   Version()
