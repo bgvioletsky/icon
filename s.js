@@ -1,6 +1,6 @@
 if (!config.依赖) {
     //远程依赖索引文件代理地址列表
-    let requirelist = ['https://cdn.jsdelivr.net/gh/bgvioletsky/icon/','https://raw.githubusercontent.com/bgvioletsky/icon/main/']
+    let requirelist = ['https://raw.githubusercontent.com/bgvioletsky/icon/main/']
     let requirefile = "hiker://files/rules/bgHouse/require.json";
     if (fetch(requirefile)) {
         try {
@@ -21,7 +21,7 @@ if (!config.依赖) {
     }
     writeFile(requirefile, JSON.stringify(requirelist));
     initConfig({
-        依赖: 'https://ghproxy.net/https://raw.githubusercontent.com/bgvioletsky/icon/main/main.js'
+        依赖: relyfile
     });
    
 }
