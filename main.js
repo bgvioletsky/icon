@@ -205,7 +205,7 @@ function setting() {
     {
       title: "版本号为: V"+getItem('Version'),
       url: $().lazyRule(() => {
-        return "toast://未做完hhh";
+        return "toast://版本号为: V"+getItem('Version');
       }),
       col_type: "text_icon",
       pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
@@ -579,7 +579,7 @@ function updatefile() {
 
 //更新
 function Version(){
-  var nowVersion = getItem('Version', "0.0.2");//现在版本 
+  var nowVersion = getItem('Version', "0.0.5");//现在版本 
   var nowtime = Date.now();
   var oldtime = parseInt(getItem('VersionChecktime','bgvioletsky0').replace('bgvioletsky',''));
   if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime+12*60*60*1000)) {
