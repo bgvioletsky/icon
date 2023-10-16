@@ -378,9 +378,9 @@ function warehouse() {
           }
         },
         method,
-        getItem("token"),
-        getItem("repoOwner"),
-        getItem("repoName")
+        getItem("token",""),
+        getItem("repoOwner",""),
+        getItem("repoName","")
       ),
       pic_url:
         getItem("warehouse", "0") == "1"
