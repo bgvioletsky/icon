@@ -585,7 +585,7 @@ function Version(){
   if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime+12*60*60*1000)) {
     log("sa")
     try {
-        require((config.依赖).match(/^(https?:\/\/[^\/]+)/)[1]+'/iconVersion.js')
+        require((config.依赖).replace("main.js",'iconVersion.js'));
         if (parseFloat((newVersion.icon).replace(/(\.\d+)\./, '$1')) > parseFloat((nowVersion).replace(/(\.\d+)\./, '$1'))) {
             confirm({
                 title:'发现新版本，是否更新？', 
