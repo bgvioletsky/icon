@@ -77,7 +77,7 @@ function F() {
         pic_url: "hiker://files/bgHouse/src/system/19.svg",
         url: $("","文件名").input((list)=>{
           return $("", "https|hiker|绝对地址").input((list,name) => {
-          let method= require(config.方法);
+          let method= require((config.依赖).replace("main.js",'method.js'));
           let dir =
             "hiker://files/bgHouse/icon/src/" +
             list[eval(getMyVar("mainindex", "0"))].dirpath +
