@@ -205,7 +205,7 @@ function setting() {
     {
       title: "版本号为: V"+getItem('Version'),
       url: $().lazyRule(() => {
-        return "toast://版本号为: V"+getItem('Version');
+        return "toast://版本号为: V"+getItem('Version','0.0.5');
       }),
       col_type: "text_icon",
       pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
