@@ -205,7 +205,7 @@ function setting() {
     {
       title: "版本号为: V"+getItem('Version'),
       url: $().lazyRule(() => {
-        return "toast://未做完";
+        return "toast://未做完hhh";
       }),
       col_type: "text_icon",
       pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
@@ -583,7 +583,6 @@ function Version(){
   var nowtime = Date.now();
   var oldtime = parseInt(getItem('VersionChecktime','bgvioletsky0').replace('bgvioletsky',''));
   if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime+12*60*60*1000)) {
-    log("sa")
     try {
         require((config.依赖).replace("main.js",'iconVersion.js'));
         if (parseFloat((newVersion.icon).replace(/(\.\d+)\./, '$1')) > parseFloat((nowVersion).replace(/(\.\d+)\./, '$1'))) {
