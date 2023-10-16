@@ -21,7 +21,7 @@ if (!config.依赖) {
     }
     writeFile(requirefile, JSON.stringify(requirelist));
     initConfig({
-        依赖: relyfile
+        依赖: 'https://ghproxy.net/https://raw.githubusercontent.com/bgvioletsky/icon/main/main.js'
     });
    
 }
