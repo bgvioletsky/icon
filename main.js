@@ -581,7 +581,7 @@ function updatefile() {
 function Version(){
   var nowVersion = getItem('Version', "0.0.4");//现在版本 
   var nowtime = Date.now();
-  var oldtime = parseInt(getItem('VersionChecktime','0').replace('bgvioletsky',''));
+  var oldtime = parseInt(getItem('VersionChecktime','bgvioletsky0').replace('bgvioletsky',''));
   if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime+12*60*60*1000)) {
     try {
         require((config.依赖).match(/^(https?:\/\/[^\/]+)/)[1]+'/iconVersion.js')
