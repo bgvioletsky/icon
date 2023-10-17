@@ -207,9 +207,9 @@ function setting() {
     col_type: "icon_small_4",
     pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
   }, {
-    title: "版本号为: V" + getItem('Version', '0.0.8'),
+    title: "版本号为: V" + getItem('Version', '0.0.9'),
     url: $().lazyRule(() => {
-      return "toast://版本号为: V" + getItem('Version', '0.0.8');
+      return "toast://版本号为: V" + getItem('Version', '0.0.9');
     }),
     col_type: "text_icon",
     pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
@@ -557,7 +557,7 @@ function updatefile() {
 
 //更新
 function Version() {
-  var nowVersion = getItem('Version', '0.0.8'); //现在版本 
+  var nowVersion = getItem('Version', '0.0.9'); //现在版本 
   var nowtime = Date.now();
   var oldtime = parseInt(getItem('VersionChecktime', 'bgvioletsky0').replace('bgvioletsky', ''));
   if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime +  60 * 1000)) {
