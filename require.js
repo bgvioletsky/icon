@@ -1,5 +1,4 @@
-let file = "https://ghproxy.net/https://raw.githubusercontent.com/bgvioletsky/icon/main/main.js";
-let file1="https://cdn.jsdelivr.net/gh/bgvioletsky/icon@0.0.2/main.js"
+let file = "https://cdn.jsdelivr.net/gh/bgvioletsky/icon@/main.js";
 let relyfile = "";
 if (fileExist("hiker://files/libs/" + md5(file) + ".js")) {
   relyfile = file;

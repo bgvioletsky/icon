@@ -148,6 +148,19 @@ function F() {
                 refreshPage(false);
                 toast("图片已删除");
               }, method,pic_url,getItem("token"),getItem("repoOwner"),getItem("repoName"),imgpath[i]),
+            },{
+              title: " 上传 ",
+              js: $.toString((aa,pic,a,b,c,) => {
+                if(getItem("warehouse")=="1"){
+                 let dir= pic.split("/").at(-2);
+                 let f_name=
+                  pic.split("/").at(-1);
+                  aa.upload(a,b,c,dir,f_name,pic)
+                  refreshPage(false);
+                toast("图片已删除");
+                }
+                
+              }, method,pic_url,getItem("token"),getItem("repoOwner"),getItem("repoName")),
             },
           ],
         },
@@ -203,9 +216,9 @@ function setting() {
       pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
     },
     {
-      title: "版本号为: V"+getItem('Version'),
+      title: "版本号为: V"+getItem('Version','0.0.7'),
       url: $().lazyRule(() => {
-        return "toast://版本号为: V"+getItem('Version','0.0.6');
+        return "toast://版本号为: V"+getItem('Version','0.0.7');
       }),
       col_type: "text_icon",
       pic_url: "https://cdn.jsdelivr.net/gh/bgvioletsky/test/system/12.svg",
@@ -579,7 +592,7 @@ function updatefile() {
 
 //更新
 function Version(){
-  var nowVersion = getItem('Version','0.0.6');//现在版本 
+  var nowVersion = getItem('Version','0.0.7');//现在版本 
   var nowtime = Date.now();
   var oldtime = parseInt(getItem('VersionChecktime','bgvioletsky0').replace('bgvioletsky',''));
   if (getMyVar('bgvioletsky-VersionCheck', '0') == '0' && nowtime > (oldtime+12*60*60*1000)) {
