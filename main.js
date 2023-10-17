@@ -146,7 +146,7 @@ function F() {
             }, method, pic_url, getItem("token"), getItem("repoOwner"), getItem("repoName"), imgpath[i]),
           }, {
             title: " 上传 ",
-            js: $.toString((aa, pic, a, b, c, ) => {
+            js: $.toString((aa, pic, a, b, c ) => {
               if (getItem("warehouse") == "1") {
                 let dir = pic.split("/").at(-2);
                 let f_name =pic.split("/").at(-1);
@@ -156,7 +156,7 @@ function F() {
               }
 
             }, method, pic_url, getItem("token"), getItem("repoOwner"), getItem("repoName")),
-          }, ],
+          }],
         },
         pic_url: pic_url,
         col_type: list[eval(getMyVar("mainindex", "0"))].dirtype,
