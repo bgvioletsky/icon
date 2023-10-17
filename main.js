@@ -149,11 +149,10 @@ function F() {
             js: $.toString((aa, pic, a, b, c, ) => {
               if (getItem("warehouse") == "1") {
                 let dir = pic.split("/").at(-2);
-                let f_name =
-                  pic.split("/").at(-1);
+                let f_name =pic.split("/").at(-1);
                 aa.upload(a, b, c, dir, f_name, pic)
                 refreshPage(false);
-                toast("图片已删除");
+                toast("图片已上传");
               }
 
             }, method, pic_url, getItem("token"), getItem("repoOwner"), getItem("repoName")),
