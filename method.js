@@ -231,7 +231,7 @@
           name: f.getName() + "",
           path: f.getPath() + "",
           size: f.isFile() ? Number(f.length()) : undefined,
-          lastModified: f.lastModified(),
+          lastModified: f.lastModified(),//时间修改
         });
       }
     }
